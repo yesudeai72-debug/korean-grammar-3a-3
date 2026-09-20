@@ -3,13 +3,28 @@
 
   // Six matching groups (question / picture hint / answer).
   // Column display order intentionally scrambled to mirror the printed worksheet.
+  // Picture hints are built from several small icons forming one scene, plus a short
+  // NOUN-ONLY label -- never a conjugated sentence -- so the target grammar (-느라(고))
+  // never appears anywhere on the board. Students infer the cause from the scene.
   var groups = {
-    g1: { q:'어제 잘 잤어요?',                 pic:{emoji:'🎤', cap:'밤늦게까지 놀았어요'}, a:'못 잤어요.' },
-    g2: { q:'식사하셨어요?',                    pic:{emoji:'📚', cap:'공부하느라 바빴어요'}, a:'못 먹었어요.' },
-    g3: { q:'어제 왜 전화를 안 받았어요?',       pic:{emoji:'🚿', cap:'샤워 중이었어요'},     a:'못 받았어요.' },
-    g4: { q:'요즘 어떻게 지내요?',               pic:{emoji:'💻', cap:'야근을 많이 해요'},     a:'힘들어요.' },
-    g5: { q:'오늘 시간 있어요?',                 pic:{emoji:'🏃', cap:'운동하러 가야 해요'},   a:'바빠요.' },
-    g6: { q:'어제 생일 파티에 갔어요?',          pic:{emoji:'🍽️', cap:'다른 약속이 있었어요'}, a:'못 갔어요.' }
+    g1: { q:'어제 잘 잤어요?',
+          pic:{icons:['🛏️','🔊','🙉','😖'], label:'옆방 소음'},
+          a:'못 잤어요.' },
+    g2: { q:'식사하셨어요?',
+          pic:{icons:['📖','⏰','✏️','😵'], label:'밤샘 시험공부'},
+          a:'못 먹었어요.' },
+    g3: { q:'어제 왜 전화를 안 받았어요?',
+          pic:{icons:['🚿','💦','📴','🧴'], label:'샤워 중'},
+          a:'못 받았어요.' },
+    g4: { q:'요즘 어떻게 지내요?',
+          pic:{icons:['💻','🌙','📊','😩'], label:'매일 야근'},
+          a:'힘들어요.' },
+    g5: { q:'오늘 시간 있어요?',
+          pic:{icons:['🏃','🏊','⏱️','📅'], label:'운동 스케줄'},
+          a:'바빠요.' },
+    g6: { q:'어제 생일 파티에 갔어요?',
+          pic:{icons:['🍽️','🍻','👔','🕗'], label:'회사 회식'},
+          a:'못 갔어요.' }
   };
 
   var leftOrder  = ['g1','g2','g5','g3','g4','g6'];
@@ -39,9 +54,14 @@
     } else if (role === 'a'){
       node.textContent = groups[groupId].a;
     } else {
-      var em = el('span', 'emoji'); em.textContent = groups[groupId].pic.emoji;
-      var cap = el('span', 'cap'); cap.textContent = groups[groupId].pic.cap;
-      node.appendChild(em); node.appendChild(cap);
+      var grid = el('span', 'icon-grid');
+      groups[groupId].pic.icons.forEach(function(ic){
+        var slot = el('span', 'icon-slot');
+        slot.textContent = ic;
+        grid.appendChild(slot);
+      });
+      var cap = el('span', 'cap'); cap.textContent = groups[groupId].pic.label;
+      node.appendChild(grid); node.appendChild(cap);
     }
     node.addEventListener('click', function(){ onNodeClick(node); });
     node.addEventListener('keydown', function(e){
