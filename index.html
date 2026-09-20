@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#193f55">
+<link rel="icon" href="favicon.svg">
+<title>질문과 대답 연결하기 · 한국어 3A 2과 문법 ③</title>
+<meta name="description" content="그림을 힌트로 질문과 대답을 선으로 연결하는 한국어 3A 2과 문법 활동">
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<main>
+  <header class="topbar"><span class="brand">한국어 <b>3A</b></span><span>02 · 문법 ③</span></header>
+
+  <section class="intro">
+    <div>
+      <p class="eyebrow"><span>문법 3</span> 질문 · 대답 연결하기</p>
+      <h1>질문에 어울리는 대답을 찾아보세요</h1>
+      <p class="instruction">가운데 그림을 힌트로 삼아 <b>질문 → 그림 → 대답</b> 순서로 하나씩 눌러 선을 연결하세요. 같은 그룹을 모두 고르면 자동으로 이어집니다.</p>
+    </div>
+    <button id="reset" class="text-button" type="button">↺ 처음부터</button>
+  </section>
+
+  <section class="board-wrap">
+    <div class="board" id="board">
+      <svg id="lines" class="lines" aria-hidden="true"></svg>
+      <div class="col" id="col-q" data-role="q"></div>
+      <div class="col col-mid" id="col-pic" data-role="pic"></div>
+      <div class="col" id="col-a" data-role="a"></div>
+    </div>
+  </section>
+
+  <section class="controls">
+    <button id="checkAll" class="primary" type="button">✔ 정답 확인</button>
+    <button id="revealAll" class="secondary" type="button">👁 정답 보기</button>
+    <button id="resetAll" class="secondary" type="button">↺ 다시 하기</button>
+    <div class="score">맞은 개수 <strong id="scoreNum">0</strong>/<span id="scoreTotal">6</span></div>
+  </section>
+
+  <section class="open-ended">
+    <p class="eyebrow"><span>나만의 질문</span> 직접 만들어 보기</p>
+    <p class="instruction">위 표에 없는 나만의 질문과 대답을 만들어 써 보세요. (채점되지 않아요)</p>
+    <div class="open-row">
+      <input type="text" id="openQ" placeholder="예: 어제 숙제 했어요?" aria-label="나만의 질문">
+      <span class="arrow">→</span>
+      <input type="text" id="openA" placeholder="예: 못 했어요." aria-label="나만의 대답">
+    </div>
+  </section>
+
+  <footer>서울대 한국어 3A · 2과 문법 ③ <span>질문 · 대답 연결하기</span></footer>
+</main>
+</body></html>
